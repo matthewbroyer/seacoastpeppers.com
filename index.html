@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seacoast Peppers</title>
+<meta name="description" content="Small-batch pepper jelly grown and jarred in Exeter, NH. Six peppers, two heat levels. Order by text.">
+<!-- Security: this page makes no network requests of its own (connect-src 'none') and loads nothing from other sites.
+     If you ever add a signup form, analytics, or an outside script, this line must change, and so must the Privacy section. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<link rel="preload" href="fonts/archivo-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#F6F5F2">
+<meta property="og:title" content="Seacoast Peppers">
+<meta property="og:description" content="Small-batch pepper jelly from a Seacoast NH garden. 6 peppers, 2 heat levels. $10 a jar or any 3 for $20.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://seacoastpeppers.com/">
+<meta property="og:image" content="https://seacoastpeppers.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2030%22%3E%3Crect%20x%3D%223%22%20y%3D%221.5%22%20width%3D%2218%22%20height%3D%225.5%22%20rx%3D%221.3%22%20fill%3D%22%2315181C%22/%3E%3Cpath%20d%3D%22M4.3%207h15.4c1.5.7%202.3%201.8%202.3%203.4V25a4%204%200%200%201-4%204H6a4%204%200%200%201-4-4V10.4c0-1.6.8-2.7%202.3-3.4z%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%2315181C%22%20stroke-width%3D%221.6%22/%3E%3Cpath%20d%3D%22M3.2%2012.2h17.6V25a2.9%202.9%200%200%201-2.9%202.9H6.1A2.9%202.9%200%200%201%203.2%2025z%22%20fill%3D%22%23E8620C%22/%3E%3Crect%20x%3D%225.2%22%20y%3D%2214%22%20width%3D%221.7%22%20height%3D%2210.5%22%20rx%3D%22.85%22%20fill%3D%22%23FFFFFF%22%20opacity%3D%22.6%22/%3E%3C/svg%3E">
+<style>
+  /* Fonts are served from this site's own /fonts folder (SIL Open Font License, see ATTRIBUTIONS.md),
+     so visitors' browsers don't contact Google or any other font service. */
+  @font-face { font-family: "Archivo"; font-style: normal; font-display: swap; font-weight: 100 900; font-stretch: 62% 125%; src: url(fonts/archivo-latin-variable.woff2) format("woff2"); }
+  @font-face { font-family: "IBM Plex Mono"; font-style: normal; font-display: swap; font-weight: 500; src: url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2"); }
+  @font-face { font-family: "IBM Plex Mono"; font-style: normal; font-display: swap; font-weight: 600; src: url(fonts/ibm-plex-mono-latin-600-normal.woff2) format("woff2"); }
+
+  /* ============ EDIT THESE ============ */
+  /* Phone number, price, and stock live in the <script> at the bottom (CONFIG and STOCK). */
+
+  :root {
+    color-scheme: light;
+    --paper: #F6F5F2;
+    --surface: #FFFFFF;
+    --ink: #15181C;
+    --ink-soft: #565D66;
+    --ink-faint: #656B73;       /* darkened from #8A9098 so small gray text meets WCAG AA contrast (4.5:1) */
+    --line: #E2E0DB;
+    --line-strong: #C9C6BF;
+    /* ACCENT COLOR. To switch, replace these 5 lines with option B or C:
+       B chili red:  --pepper:#C8102E; --pepper-deep:#9C0B23; --pepper-tint:#FBE7EA; --on-pepper:#FFFFFF; --pepper-bright:#F58A98;
+       C crimson:    --pepper:#9E1B32; --pepper-deep:#7E1428; --pepper-tint:#F7E8EB; --on-pepper:#FFFFFF; --pepper-bright:#EE8FA0; */
+    --pepper: #E8620C;          /* A habanero orange */
+    --pepper-deep: #B04A06;
+    --pepper-tint: #FDECDF;
+    --on-pepper: #15181C;
+    --pepper-bright: #F7A064;
+    --leaf: #2E6B3A;
+    --leaf-tint: #EAF3EC;
+    --night: #16191D;
+    --night-2: #22262C;
+    --night-line: #353A42;
+    --on-night: #F3F1EC;
+    --on-night-soft: #A3A9B1;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 2px rgba(21,24,28,.05), 0 6px 20px rgba(21,24,28,.06);
+    --shadow-lg: 0 2px 6px rgba(21,24,28,.08), 0 24px 60px rgba(21,24,28,.18);
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 16px/1.6 var(--body);
+    padding-inline: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  h1, h2 { font-family: var(--display); font-stretch: 125%; font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; line-height: 1; margin: 0; text-wrap: balance; }
+  h3 { font-family: var(--display); font-weight: 700; line-height: 1.15; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  .eyebrow { font: 600 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); }
+  a { color: var(--pepper-deep); text-underline-offset: 3px; }
+  a:hover { color: var(--pepper); }
+  :focus-visible { outline: 2px solid var(--pepper); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- buttons ---------- */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; font: 700 16px/1 var(--body); letter-spacing: .01em; padding: 14px 22px; border: 1px solid var(--ink); border-radius: var(--radius-sm); background: var(--ink); color: var(--surface); text-decoration: none; cursor: pointer; }
+  .btn:hover { background: var(--pepper); border-color: var(--pepper); color: var(--on-pepper); }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+  .btn.ghost:hover { border-color: var(--ink); background: var(--surface); color: var(--ink); }
+  .btn.danger { background: var(--pepper); border-color: var(--pepper); color: var(--on-pepper); }
+  .btn.danger:hover { background: var(--pepper-deep); border-color: var(--pepper-deep); color: #fff; }
+
+  /* ---------- skip link ---------- */
+  .skip { position: absolute; left: 16px; top: -60px; z-index: 50; background: var(--ink); color: var(--surface); font: 600 13px/1 var(--body); padding: 12px 14px; border-radius: var(--radius-sm); text-decoration: none; }
+  .skip:focus { top: calc(env(safe-area-inset-top, 0px) + 8px); }
+  .skip:hover { background: var(--pepper); color: var(--on-pepper); }
+
+  /* ---------- sticky header ---------- */
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; margin-inline: -16px; padding-inline: 16px; background: rgba(246,245,242,.92); -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
+  .bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 10px; }
+  .brand { font: 800 expanded 19px/1 var(--display); letter-spacing: 0; word-spacing: -.08em; white-space: nowrap; text-transform: uppercase; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+  .brand .logo { width: 22px; height: 28px; flex: 0 0 auto; }
+  .brand .wm span { color: var(--pepper); }
+  a.brand:hover { color: var(--ink); }
+  a.brand:hover .wm span { color: var(--pepper-deep); }
+  .bar-tools { display: flex; align-items: center; gap: 6px; }
+  .bar nav { display: flex; gap: 4px; margin-right: 6px; font: 600 14px/1 var(--body); }
+  .bar nav a { color: var(--ink-soft); text-decoration: none; padding: 15px 12px; border-radius: var(--radius-sm); }
+  .bar nav a:hover { color: var(--ink); background: rgba(21,24,28,.05); }
+  .icon-btn { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); cursor: pointer; padding: 0; }
+  .icon-btn:hover { border-color: var(--ink); }
+  .icon-btn svg { width: 19px; height: 19px; }
+  .menu-btn { display: none; }
+  .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; }
+  .progress i { display: block; height: 100%; background: var(--pepper); transform-origin: 0 50%; transform: scaleX(0); }
+  section, .card, .faq details, .ticket { scroll-margin-top: 80px; }
+  main:focus { outline: none; }
+
+  /* ---------- hero ---------- */
+  .hero { display: grid; grid-template-columns: 1.45fr 1fr; gap: 56px; align-items: center; padding-block: 64px 72px; }
+  .hero h1 { font-size: clamp(40px, 5.6vw, 76px); margin-top: 16px; }
+  .hero h1 em { font-style: normal; color: var(--pepper); }
+  .hero .lede { margin-top: 20px; font-size: 20px; line-height: 1.5; max-width: 32ch; color: var(--ink-soft); }
+  .hero .lede b { color: var(--ink); font-weight: 700; }
+  .hero .cta { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero .cta .btn { min-height: 54px; font-size: 17px; padding-inline: 26px; }
+
+  /* spec label (right side of hero) */
+  .spec { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); padding: 26px 26px 18px; position: relative; }
+  .spec::before { content: ""; position: absolute; inset: 7px; border: 1px solid var(--line); border-radius: 11px; pointer-events: none; }
+  .spec-jars { display: flex; gap: 8px; justify-content: center; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .spec-jars svg { width: 34px; height: 44px; }
+  .spec-title { margin-top: 16px; text-align: center; font: 800 expanded 22px/1 var(--display); text-transform: uppercase; letter-spacing: .02em; }
+  .spec-sub { text-align: center; font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; }
+  .spec dl { margin: 18px 0 0; display: grid; }
+  .spec dl > div { display: flex; justify-content: space-between; gap: 16px; padding-block: 11px; border-top: 1px solid var(--line); font-size: 15px; }
+  .spec dt { color: var(--ink-faint); font: 500 12px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .spec dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* ---------- sections ---------- */
+  section { padding-block: 72px; border-top: 1px solid var(--line); }
+  .sec-head { display: grid; gap: 12px; margin-bottom: 36px; max-width: 720px; }
+  .sec-head h2 { font-size: clamp(30px, 4vw, 46px); }
+  .sec-head p { max-width: 56ch; color: var(--ink-soft); font-size: 17px; }
+
+  /* ---------- scoville ladder ---------- */
+  .ladder { background: var(--night); color: var(--on-night); padding: 28px 28px 20px; border-radius: var(--radius); overflow-x: auto; }
+  .scale { display: grid; gap: 16px; }
+  .s-row { display: grid; grid-template-columns: 220px 1fr 160px; align-items: center; gap: 16px; }
+  .s-name { font: 600 15px/1.25 var(--body); color: var(--on-night); }
+  .s-range { font: 500 12px/1.2 var(--mono); color: var(--on-night-soft); font-variant-numeric: tabular-nums; }
+  .s-track { position: relative; height: 14px; }
+  .s-tick { position: absolute; top: -9px; bottom: -9px; width: 1px; background: rgba(243,241,236,.12); }
+  .s-bar { position: absolute; top: 0; bottom: 0; min-width: 6px; border-radius: 999px; }
+  .s-axis .s-track { height: 16px; }
+  .s-axis .s-lab { position: absolute; transform: translateX(-50%); font: 500 12px/1 var(--mono); color: var(--on-night-soft); white-space: nowrap; }
+  .s-axis .s-lab.first { transform: none; }
+  .s-axis .s-lab.last { transform: translateX(-100%); }
+  .ladder .note { font: 400 13px/1.5 var(--body); color: var(--on-night-soft); margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--night-line); }
+  @media (max-width: 620px) {
+    .ladder { padding: 20px 18px 16px; }
+    .scale { gap: 18px; }
+    .s-row { grid-template-columns: 1fr auto; row-gap: 8px; column-gap: 10px; }
+    .s-name { grid-column: 1; grid-row: 1; }
+    .s-range { grid-column: 2; grid-row: 1; text-align: right; }
+    .s-track { grid-column: 1 / -1; grid-row: 2; }
+    .s-axis .s-empty { display: none; }
+    .s-axis .s-track { grid-row: 1; }
+    .s-axis .s-lab { font-size: 11px; }
+  }
+
+  /* ---------- lineup ---------- */
+  .season { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--ink-soft); font-size: 15px; margin-bottom: 24px; }
+  .season b { font: 600 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--pepper-deep); background: var(--pepper-tint); padding: 7px 10px; border-radius: 999px; }
+  .lineup { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; grid-template-rows: auto auto 1fr auto auto; gap: 16px; position: relative; }
+  .card-top { display: flex; gap: 16px; align-items: center; }
+  .card-top svg { flex: 0 0 auto; width: 46px; height: 60px; }
+  .card h3 { font-size: 22px; }
+  .card .origin { font: 500 12px/1.3 var(--mono); color: var(--ink-faint); letter-spacing: .04em; margin-top: 5px; }
+  .card .flavor { color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
+  .heats { display: grid; gap: 10px; border-top: 1px solid var(--line); padding-top: 16px; }
+  .heat-row { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 12px; }
+  .heat-row .lvl { font: 600 13px/1 var(--body); color: var(--ink); }
+  .meter { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; max-width: 150px; }
+  .meter i { height: 6px; border-radius: 999px; background: #ECEAE5; }
+  .meter i.on { background: var(--pepper); }
+  .heat-row .word { font: 500 12px/1 var(--mono); color: var(--ink-faint); white-space: nowrap; }
+  /* badge sits on the card's top edge so it doesn't take room from the name */
+  .superhot { position: absolute; top: -11px; right: 18px; background: var(--ink); color: var(--surface); font: 600 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; }
+  .stock { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { font: 500 12px/1 var(--body); padding: 7px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 7px; }
+  .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .pill.in { color: var(--leaf); background: var(--leaf-tint); }
+  .pill.out { color: var(--ink-faint); background: #F0EFEB; }
+  .pill.out::before { background: transparent; border: 1.5px solid currentColor; box-sizing: border-box; }
+
+  /* ---------- uses ---------- */
+  .uses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .use { padding-top: 18px; border-top: 2px solid var(--ink); }
+  .use h3 { font-size: 20px; margin-bottom: 8px; }
+  .use p { color: var(--ink-soft); font-size: 15px; }
+
+  /* ---------- recipe / trust ---------- */
+  .seal-line { margin-top: 24px; display: inline-flex; align-items: center; gap: 10px; font: 500 14px/1.35 var(--body); color: var(--ink-soft); text-decoration: none; }
+  .seal-line svg { width: 20px; height: 20px; flex: 0 0 auto; color: var(--leaf); }
+  .seal-line:hover { color: var(--ink); text-decoration: underline; }
+  .book { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .book > div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: grid; gap: 16px; align-content: start; }
+  .book h3 { font-size: 20px; }
+  .book ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .book li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; font-size: 15px; color: var(--ink-soft); }
+  .book li::before { content: "✓"; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font: 700 12px/1 var(--body); color: var(--leaf); background: var(--leaf-tint); margin-top: 1px; }
+  .book .swap li::before { content: "↔"; color: var(--pepper-deep); background: var(--pepper-tint); }
+  .book li b { color: var(--ink); font-weight: 600; }
+  .formula { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font: 500 13px/1 var(--mono); }
+  .formula span { border: 1px solid var(--line-strong); padding: 9px 12px; border-radius: 999px; background: var(--paper); }
+  .formula span.hot { background: var(--pepper); border-color: var(--pepper); color: var(--on-pepper); }
+  .formula i { font-style: normal; font-weight: 600; color: var(--ink-faint); }
+  .book .book-foot { grid-column: 1 / -1; display: block; background: transparent; border: 0; padding: 0; color: var(--ink-soft); font-size: 14px; }
+
+  /* ---------- how it works ---------- */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .step { padding: 24px; display: grid; gap: 8px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .step .n { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font: 600 15px/1 var(--mono); color: var(--surface); background: var(--ink); margin-bottom: 6px; }
+  .step h3 { font-size: 19px; }
+  .step p { color: var(--ink-soft); font-size: 15px; }
+  .price-note { margin-top: 16px; font: 500 13px/1.5 var(--mono); color: var(--ink-faint); }
+
+  /* ---------- order ---------- */
+  .stock-note { background: var(--night); color: var(--on-night); padding: 18px 20px; border-radius: var(--radius); margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+  .stock-note b { font: 700 17px/1.2 var(--body); color: var(--surface); }
+  .stock-note span { color: var(--on-night-soft); font-size: 15px; }
+  .stock-note .list-btn { margin-left: auto; background: var(--pepper); border-color: var(--pepper); color: var(--on-pepper); }
+  .stock-note .list-btn:hover { background: var(--surface); border-color: var(--surface); color: var(--ink); }
+  .steps-bar { list-style: none; margin: 0 0 24px; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .steps-bar li { display: flex; align-items: center; gap: 10px; padding: 12px 14px; font: 600 14px/1.2 var(--body); color: var(--ink-faint); border-radius: var(--radius-sm); background: #EFEEEA; }
+  .steps-bar li span { flex: 0 0 auto; width: 26px; height: 26px; display: grid; place-items: center; border: 1.5px solid currentColor; border-radius: 50%; font: 600 12px/1 var(--mono); }
+  .steps-bar li.now { color: var(--ink); background: var(--surface); box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .steps-bar li.now span { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .steps-bar li.ok { color: var(--leaf); background: var(--leaf-tint); }
+  .steps-bar li.ok span { background: var(--leaf); border-color: var(--leaf); color: #fff; font-size: 0; }
+  .steps-bar li.ok span::before { content: "✓"; font: 700 13px/1 var(--body); }
+  .packs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .pack { text-align: left; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 16px; cursor: pointer; display: grid; gap: 6px; font: inherit; color: var(--ink); }
+  .pack:hover { border-color: var(--ink); box-shadow: var(--shadow); }
+  .pack b { font: 700 17px/1.2 var(--body); }
+  .pack small { font: 400 13px/1.4 var(--body); color: var(--ink-soft); }
+  .pack em { font: 600 13px/1 var(--mono); font-style: normal; color: var(--pepper-deep); margin-top: 4px; }
+  .pack:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; border-color: var(--line); }
+  .order { display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items: start; }
+  .sheet { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .sheet-head { display: grid; grid-template-columns: 1fr 124px 124px; gap: 10px; padding: 12px 18px; background: #F3F2EE; border-bottom: 1px solid var(--line); color: var(--ink-faint); font: 600 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+  .sheet-head span:not(:first-child) { text-align: center; }
+  .sheet-row { display: grid; grid-template-columns: 1fr 124px 124px; gap: 10px; padding: 12px 18px; align-items: center; }
+  .sheet-row + .sheet-row { border-top: 1px solid var(--line); }
+  .sheet-row .nm { font: 600 16px/1.2 var(--body); }
+  .sheet-row.out .nm::after { content: "Out of stock"; display: block; margin-top: 4px; font: 500 12px/1 var(--body); color: var(--ink-faint); }
+  .qcell { display: grid; gap: 6px; }
+  .qlbl { display: none; font: 600 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+  .qty { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); overflow: hidden; }
+  .qty button { border: 0; background: transparent; font: 500 20px/1 var(--body); color: var(--ink); height: 40px; cursor: pointer; }
+  .qty button:hover { background: #F0EFEB; }
+  .qty button:disabled { opacity: .3; cursor: not-allowed; background: transparent; }
+  .qty output { text-align: center; font: 600 15px/1 var(--mono); font-variant-numeric: tabular-nums; }
+  .sheet-foot { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 18px; border-top: 1px solid var(--line); font: 600 16px/1 var(--body); }
+  .sheet-foot small { font: 500 12px/1 var(--mono) !important; color: var(--ink-faint) !important; margin-left: 6px; letter-spacing: 0 !important; }
+  .sheet-foot b { font: 700 20px/1 var(--body); font-variant-numeric: tabular-nums; }
+  .sheet-foot + .sheet-foot { border-top: 0; padding-top: 0; }
+  .sheet-foot + .sheet-foot b { color: var(--pepper); }
+  .deal { margin: 0 18px; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--pepper-tint); font: 500 14px/1.4 var(--body); color: var(--pepper-deep); }
+  .deal:empty { display: none; }
+  .sheet-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 18px 18px; }
+  .clear { border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: transparent; font: 500 14px/1 var(--body); color: var(--ink-soft); cursor: pointer; padding: 12px 14px; min-height: 44px; }
+  .clear:hover { border-color: var(--pepper); color: var(--pepper-deep); }
+  .clear:disabled { opacity: .45; cursor: not-allowed; color: var(--ink-soft); border-color: var(--line-strong); }
+  .sheet-status { font: 400 14px/1.4 var(--body); color: var(--ink-soft); display: flex; align-items: center; gap: 10px; }
+  .undo { border: 1px solid var(--ink); border-radius: var(--radius-sm); background: var(--ink); color: var(--surface); font: 600 14px/1 var(--body); padding: 12px 14px; min-height: 44px; cursor: pointer; }
+  .undo:hover { background: var(--pepper); border-color: var(--pepper); color: var(--on-pepper); }
+
+  .ticket { background: var(--night); color: var(--on-night); padding: 24px; border-radius: var(--radius); display: grid; gap: 18px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 80px); }
+  .ticket-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .ticket h3 { font-size: 22px; color: var(--surface); }
+  .t-sum { font: 600 16px/1 var(--mono); color: var(--pepper-bright); font-variant-numeric: tabular-nums; }
+  .ticket label, .how-get legend { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--on-night-soft); display: grid; gap: 8px; }
+  .ticket input, .ticket textarea { font: 400 16px/1.4 var(--body); padding: 12px; border: 1px solid var(--night-line); border-radius: var(--radius-sm); background: var(--night-2); color: var(--on-night); width: 100%; }
+  .ticket input::placeholder { color: #8E959E; }
+  .ticket .field-note { font: 400 13px/1.4 var(--body); letter-spacing: 0; text-transform: none; color: var(--on-night-soft); }
+  .ticket textarea { min-height: 150px; resize: vertical; font: 400 13px/1.5 var(--mono); }
+  .how-get { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .how-get legend { padding: 0; margin-bottom: 8px; }
+  .ticket .seg { display: block; cursor: pointer; position: relative; }
+  .seg input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+  .seg span { display: grid; place-items: center; min-height: 48px; padding: 8px; border: 1px solid var(--night-line); border-radius: var(--radius-sm); font: 600 15px/1.2 var(--body); letter-spacing: 0; text-transform: none; color: var(--on-night); text-align: center; }
+  .seg:hover span { border-color: var(--on-night-soft); }
+  .seg input:checked + span { background: var(--surface); color: var(--ink); border-color: var(--surface); }
+  .seg input:focus-visible + span { outline: 2px solid var(--pepper); outline-offset: 3px; }
+  .ticket .phone { font: 700 26px/1 var(--body); letter-spacing: .01em; user-select: all; color: var(--surface); margin-top: 8px; font-variant-numeric: tabular-nums; }
+  .ticket .phone.pending { font-size: 18px; color: var(--on-night-soft); }
+  .ticket .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .ticket .btn { background: var(--surface); border-color: var(--surface); color: var(--ink); }
+  .ticket .btn:hover { background: var(--pepper); border-color: var(--pepper); color: var(--on-pepper); }
+  .ticket .btn.ghost { background: transparent; color: var(--on-night); border-color: var(--night-line); }
+  .ticket .btn.ghost:hover { border-color: var(--on-night); background: transparent; color: var(--surface); }
+  .ticket .btn:disabled { opacity: .35; cursor: not-allowed; background: var(--surface); border-color: var(--surface); color: var(--ink); }
+  .ticket .status { font: 400 13px/1.5 var(--body); color: var(--on-night-soft); }
+  .ticket .status:empty { display: none; }
+  .done { border-radius: var(--radius-sm); background: rgba(92,170,108,.14); box-shadow: inset 0 0 0 1px rgba(125,196,139,.45); padding: 16px; display: grid; gap: 6px; }
+  .done b { font: 700 18px/1.2 var(--body); color: #9FD9AC; display: flex; align-items: center; gap: 8px; }
+  .done b svg { width: 20px; height: 20px; }
+  .done p { font-size: 14px; color: var(--on-night-soft); }
+  .preview summary { cursor: pointer; font: 500 13px/1 var(--body); color: var(--on-night-soft); padding-block: 6px; }
+  .preview summary:hover { color: var(--on-night); }
+  .preview textarea { margin-top: 10px; }
+
+  /* ---------- faq ---------- */
+  .faq { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+  .faq details { border-top: 1px solid var(--line); padding-block: 18px; }
+  .faq summary { cursor: pointer; font: 600 17px/1.3 var(--body); list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--ink-faint); font-weight: 400; font-size: 22px; line-height: 1; }
+  .faq summary:hover { color: var(--pepper-deep); }
+  .faq details[open] summary::after { content: "–"; }
+  .faq p { margin-top: 10px; color: var(--ink-soft); font-size: 15px; max-width: 60ch; }
+
+  /* ---------- privacy & fine print ---------- */
+  .sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+  .fine { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .fine > div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 12px; align-content: start; }
+  .fine h3 { font-size: 19px; }
+  .fine ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; color: var(--ink-soft); font-size: 15px; }
+  .fine li b { color: var(--ink); font-weight: 600; }
+  .fine .erase-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .fine .updated { font: 500 12px/1.4 var(--mono); color: var(--ink-faint); }
+  @media (max-width: 620px) { .fine { grid-template-columns: 1fr; } .fine > div { padding: 20px; } }
+
+  footer { border-top: 1px solid var(--line); padding-block: 36px 56px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font: 400 13px/1.6 var(--body); color: var(--ink-faint); }
+  footer .brand { font-size: 16px; margin-bottom: 8px; }
+
+  /* ---------- sticky order bar ---------- */
+  .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: rgba(22,25,29,.96); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--on-night); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: center; }
+  .dock-in { width: 100%; max-width: 1120px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .dock b { font: 600 16px/1 var(--body); font-variant-numeric: tabular-nums; }
+  .dock .btn { background: var(--pepper); border-color: var(--pepper); color: var(--on-pepper); min-height: 44px; padding: 10px 18px; }
+  .dock .btn:hover { background: var(--surface); border-color: var(--surface); color: var(--ink); }
+
+  /* ---------- search ---------- */
+  .search-back { position: fixed; inset: 0; z-index: 40; background: rgba(21,24,28,.45); display: grid; justify-items: center; align-items: start; padding: calc(env(safe-area-inset-top, 0px) + 72px) 16px 16px; }
+  .search { width: min(640px, 100%); background: var(--surface); border-radius: 14px; box-shadow: var(--shadow-lg); overflow: hidden; }
+  .search-in { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  .search-in svg { width: 19px; height: 19px; flex: 0 0 auto; color: var(--ink-faint); }
+  .search-in input { flex: 1; min-width: 0; border: 0; background: transparent; font: 400 18px/1.2 var(--body); color: var(--ink); outline: none; }
+  .search-in kbd { font: 500 11px/1 var(--mono); border: 1px solid var(--line); border-radius: 5px; padding: 4px 6px; color: var(--ink-faint); }
+  .results { list-style: none; margin: 0; padding: 8px; max-height: min(60vh, 440px); overflow-y: auto; }
+  .results button { width: 100%; text-align: left; display: grid; gap: 3px; padding: 10px 12px; border: 0; border-radius: var(--radius-sm); background: transparent; cursor: pointer; color: var(--ink); font: inherit; }
+  .results button:hover, .results button.on { background: #F1F0EC; }
+  .results b { font: 600 16px/1.2 var(--body); }
+  .results small { font: 400 13px/1.4 var(--body); color: var(--ink-soft); }
+  .results .type { font: 600 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--pepper-deep); }
+  .results .empty { padding: 14px 12px; color: var(--ink-soft); font-size: 15px; }
+  .hint { padding: 10px 16px; border-top: 1px solid var(--line); font: 400 13px/1.4 var(--body); color: var(--ink-faint); }
+  .flash { animation: flash 1.4s ease-out; }
+  @keyframes flash { 0%, 35% { box-shadow: 0 0 0 3px var(--pepper); } 100% { box-shadow: 0 0 0 0 transparent; } }
+
+  /* ---------- confirm modal ---------- */
+  .modal-back { position: fixed; inset: 0; z-index: 45; background: rgba(21,24,28,.5); display: grid; place-items: center; padding: 16px; }
+  .modal { width: min(420px, 100%); background: var(--surface); border-radius: 14px; box-shadow: var(--shadow-lg); padding: 26px; display: grid; gap: 12px; }
+  .modal h3 { font-size: 22px; }
+  .modal p { color: var(--ink-soft); }
+  .modal .row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; margin-top: 8px; }
+
+  /* ---------- floating buttons ---------- */
+  .fabs { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 15; display: grid; justify-items: end; gap: 10px; }
+  .dock-on .fabs { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+  .fab { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); cursor: pointer; font: 600 15px/1 var(--body); padding: 12px 18px; box-shadow: var(--shadow); }
+  .fab:hover { border-color: var(--ink); }
+  .fab svg { width: 18px; height: 18px; }
+  .fab.square { width: 48px; padding: 0; justify-content: center; }
+  .fab.text { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+  .fab.text:hover { background: var(--pepper); border-color: var(--pepper); color: var(--on-pepper); }
+  .contact-card { width: min(300px, calc(100vw - 32px)); background: var(--night); color: var(--on-night); border-radius: 14px; box-shadow: var(--shadow-lg); padding: 20px; display: grid; gap: 10px; }
+  .contact-card .eyebrow { color: var(--on-night-soft); }
+  .contact-card .num { font: 700 26px/1 var(--body); user-select: all; color: var(--surface); font-variant-numeric: tabular-nums; }
+  .contact-card p { font-size: 14px; color: var(--on-night-soft); }
+  .contact-card .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .contact-card .btn { font-size: 14px; min-height: 44px; padding: 10px 14px; border-color: var(--surface); background: var(--surface); color: var(--ink); }
+  .contact-card .btn:hover { background: var(--pepper); border-color: var(--pepper); color: var(--on-pepper); }
+  .contact-card .btn.ghost { background: transparent; color: var(--on-night); border-color: var(--night-line); }
+  .contact-card .btn.ghost:hover { border-color: var(--on-night); }
+  .contact-card .msg { font: 400 13px/1.4 var(--body); color: var(--on-night-soft); min-height: 1.4em; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 36px; padding-block: 40px 56px; }
+    .spec { max-width: 460px; }
+    .packs { grid-template-columns: repeat(2, 1fr); }
+    .lineup { grid-template-columns: repeat(2, 1fr); }
+    .order { grid-template-columns: 1fr; }
+    .ticket { position: static; }
+  }
+  @media (max-width: 620px) {
+    section { padding-block: 48px; }
+    .hero { padding-block: 28px 44px; gap: 28px; }
+    .hero .cta .btn { flex: 1 1 100%; }
+    .spec { padding: 18px 18px 16px; }
+    .spec::before { inset: 5px; }
+    .spec dl { display: none; }
+    .spec-jars { padding-bottom: 14px; }
+    .spec-jars svg { width: 30px; height: 39px; }
+    .sec-head { margin-bottom: 24px; }
+    .sec-head p { font-size: 16px; }
+    .lineup { gap: 14px; }
+    .card { gap: 12px; }
+    .card-top svg { width: 40px; height: 52px; }
+    .card h3 { font-size: 20px; }
+    .step { grid-template-columns: 36px 1fr; column-gap: 14px; row-gap: 4px; padding: 18px; }
+    .step .n { grid-row: span 2; margin: 0; }
+    .ticket { padding: 20px; }
+    .ticket textarea { font-size: 16px; }
+    #to-top { display: none !important; }
+    a, button, summary, label { -webkit-tap-highlight-color: transparent; }
+    .hero .lede { font-size: 18px; }
+    .lineup, .uses { grid-template-columns: minmax(0, 1fr); }
+    .card { min-width: 0; padding: 20px; }
+    .heat-row { grid-template-columns: 40px minmax(0, 1fr) auto; }
+    .steps { grid-template-columns: 1fr; gap: 12px; }
+    .book { grid-template-columns: 1fr; }
+    .sheet-head { display: none; }
+    .sheet-row { grid-template-columns: 1fr 1fr; padding: 14px; row-gap: 10px; }
+    .sheet-row .nm { grid-column: 1 / -1; }
+    .qlbl { display: block; }
+    .qty { grid-template-columns: 46px 1fr 46px; }
+    .qty button { height: 46px; font-size: 22px; }
+    .steps-bar li { flex-direction: column; text-align: center; gap: 6px; padding: 10px 6px; font-size: 13px; }
+    .menu-btn { display: grid; }
+    .bar nav { display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0; background: var(--surface); border-bottom: 1px solid var(--line); box-shadow: 0 16px 30px rgba(21,24,28,.1); flex-direction: column; gap: 0; padding: 6px 16px 12px; }
+    .bar nav.open { display: flex; }
+    .bar nav a { color: var(--ink); font-size: 17px; padding: 16px 4px; border-radius: 0; border-bottom: 1px solid var(--line); }
+    .bar nav a:last-child { border-bottom: 0; }
+    .bar nav a:hover { background: transparent; color: var(--pepper-deep); }
+    .fab .label { display: none; }
+    .fab.text { width: 48px; padding: 0; justify-content: center; }
+    .faq { grid-template-columns: 1fr; }
+    .dock b { font-size: 15px; }
+    .stock-note .list-btn { margin-left: 0; }
+  }
+  @media (max-width: 420px) {
+    .top .brand { font-size: 16px; gap: 8px; }
+    .top .brand .logo { width: 19px; height: 24px; }
+  }
+  @media (max-width: 360px) {
+    .top .brand { font-size: 13.5px; }
+    .heat-row .word { font-size: 11px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+    .btn, .qty button, .pack, .fab, .icon-btn, .results button, .bar nav a, .clear, .faq summary, .seal-line, .seg span, .undo { transition: background .15s, color .15s, border-color .15s, box-shadow .15s, transform .15s; }
+    .pack:hover { transform: translateY(-1px); }
+    .hero h1, .hero .lede, .hero .cta, .seal-line, .spec { animation: rise .35s cubic-bezier(.2,.7,.2,1) both; }
+    .hero .lede { animation-delay: .05s; }
+    .hero .cta { animation-delay: .1s; }
+    .seal-line { animation-delay: .15s; }
+    .spec { animation-delay: .1s; }
+    .card { animation: rise .35s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 40ms + .05s); }
+    .done { animation: rise .25s both; }
+    .fabs > * { animation: rise .25s both; }
+    .progress i { transition: transform .08s linear; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+</style>
+</head>
+<body>
+
+
+<a class="skip" href="#main">Skip to content</a>
+<header class="top" id="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top"><svg class="logo" viewBox="0 0 24 30" aria-hidden="true"><rect x="3" y="1.5" width="18" height="5.5" rx="1.3" fill="var(--ink)"/><path d="M6.5 2.5v3.5M9.5 2.5v3.5M12.5 2.5v3.5M15.5 2.5v3.5M18.5 2.5v3.5" stroke="var(--paper)" stroke-opacity=".35" stroke-width=".9"/><path d="M4.3 7h15.4c1.5.7 2.3 1.8 2.3 3.4V25a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V10.4c0-1.6.8-2.7 2.3-3.4z" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.4"/><path d="M3.2 12.2h17.6V25a2.9 2.9 0 0 1-2.9 2.9H6.1A2.9 2.9 0 0 1 3.2 25z" fill="var(--pepper)"/><rect x="5.2" y="14" width="1.7" height="10.5" rx=".85" fill="#fff" opacity=".6"/></svg><span class="wm">Seacoast <span>Peppers</span></span></a>
+    <div class="bar-tools">
+      <nav id="nav" aria-label="Sections">
+        <a href="#lineup">Flavors</a>
+        <a href="#recipe">Recipe</a>
+        <a href="#order">Order</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="icon-btn" type="button" id="search-open" aria-label="Search the site">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.6"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path id="menu-ic" d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.4" fill="none"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+</header>
+
+<main class="wrap" id="main" tabindex="-1">
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Small-batch pepper jelly · Exeter, NH</p>
+      <h1 style="margin-top:14px">Pepper jelly from my <em>backyard</em> garden</h1>
+      <p class="lede">A sweet-hot spread for crackers, wings, and gifts. <b>$10 a jar, or any 3 for $20.</b></p>
+      <div class="cta">
+        <a class="btn" href="#order" id="cta-main">Pick 3 jars for $20</a>
+        <a class="btn ghost" href="#lineup">See all 12 flavors</a>
+      </div>
+      <a class="seal-line" href="#recipe">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+        Made from a lab-tested canning recipe</a>
+    </div>
+    <aside class="spec" aria-label="This season at a glance">
+      <div class="spec-jars" id="spec-jars" aria-hidden="true"></div>
+      <p class="spec-title">2026 Harvest</p>
+      <p class="spec-sub">Small batch · Home grown</p>
+      <dl>
+        <div><dt>Flavors</dt><dd>12</dd></div>
+        <div><dt>Peppers</dt><dd>6, in Half &amp; Full heat</dd></div>
+        <div><dt>Jar</dt><dd>Half-pint (8 oz)</dd></div>
+        <div><dt>Price</dt><dd>$10, or any 3 for $20</dd></div>
+      </dl>
+    </aside>
+  </div>
+
+  <section id="lineup">
+    <div class="sec-head">
+      <h2>6 Peppers, 2 Heat Levels</h2>
+      <p>Every pepper comes in <b>Half</b> and <b>Full</b>. Full has twice the hot pepper.</p>
+    </div>
+    <p class="season"><b>Seasonal only.</b> When a flavor sells out, it's gone until next year's harvest.</p>
+    <div class="lineup" id="cards"></div>
+  </section>
+
+  <section id="heat">
+    <div class="sec-head">
+      <h2>How Hot Each Pepper Runs</h2>
+      <p>Scoville heat units, with a jalapeño for comparison. Each gridline is 10 times hotter than the last.</p>
+    </div>
+    <div class="ladder">
+      <div class="scale" id="ladder" role="img" aria-label="Scoville heat ranges: jalapeño 2,500 to 8,000; Aji Limón 30,000 to 50,000; habanero 100,000 to 350,000; Fatalii 125,000 to 400,000; Trinidad Scorpion over 1,000,000."></div>
+      <p class="note">Typical published ranges for raw peppers. The jelly is milder because sweet peppers and sugar dilute the heat.</p>
+    </div>
+  </section>
+
+  <section id="uses">
+    <div class="sec-head">
+      <h2>3 Ways to Use a Jar</h2>
+      <p>Never had pepper jelly? Start with the first one.</p>
+    </div>
+    <div class="uses">
+      <div class="use"><h3>Cream cheese &amp; crackers</h3><p>Spoon it over a block of cream cheese and serve with crackers.</p></div>
+      <div class="use"><h3>Glaze</h3><p>Brush it on wings, pork chops, or salmon in the last few minutes of cooking.</p></div>
+      <div class="use"><h3>Gifts</h3><p>Any 3 jars for $20. The Mild to Wild pack covers every heat level.</p></div>
+    </div>
+  </section>
+
+  <section id="recipe">
+    <div class="sec-head">
+      <h2>Made From a Lab-Tested Recipe</h2>
+      <p>Every jar uses <a href="https://nchfp.uga.edu/how/make-jam-jelly/jellies/golden-pepper-jelly/" target="_blank" rel="noopener">Golden Pepper Jelly<span class="sr"> (opens in a new tab)</span></a> from the National Center for Home Food Preservation at the University of Georgia. Tested recipes are lab-checked for safe acidity and canning time.</p>
+    </div>
+    <div class="book">
+      <div>
+        <h3>Never changes</h3>
+        <ul>
+          <li><span><b>Vinegar, sugar, and pectin:</b> the recipe's full amounts. The vinegar is what makes peppers safe to can.</span></li>
+          <li><span><b>Canning:</b> boiling-water processed for the recipe's time. Every lid is seal-checked, and jars that don't seal stay home.</span></li>
+          <li><span><b>Batch code</b> on every jar.</span></li>
+        </ul>
+      </div>
+      <div class="swap">
+        <h3>What I swap</h3>
+        <ul>
+          <li><span><b>The hot pepper.</b> The recipe calls for serrano, and its notes say other hot peppers can be used. I use the same amount of a pepper from my garden.</span></li>
+          <li><span><b>The bell pepper color.</b> The recipe allows any color. I pick one to suit each pepper.</span></li>
+        </ul>
+        <div class="formula" aria-label="Every batch: 5-1/2 cups pepper, 1-1/2 cups vinegar, 5 cups sugar, 3 ounces pectin">
+          <span>Bell pepper</span><i>+</i><span class="hot">Your hot pepper</span><i>=</i><span>5-1/2 cups</span>
+        </div>
+      </div>
+      <div class="book-foot">
+        Made in my home kitchen under New Hampshire's homestead food rules. <a href="https://nchfp.uga.edu/how/make-jam-jelly/jellies/golden-pepper-jelly/" target="_blank" rel="noopener">Read the original recipe<span class="sr"> (opens in a new tab)</span></a>. Seacoast Peppers isn't affiliated with or endorsed by the NCHFP or the University of Georgia.
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="sec-head">
+      <h2>Order in 3 Steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Pick your jars</h3><p>Tap + on the order card. Mix any flavors.</p></div>
+      <div class="step"><div class="n">2</div><h3>Text it to me</h3><p>Copy your order and send it. I'll confirm what's in stock.</p></div>
+      <div class="step"><div class="n">3</div><h3>Get your jars</h3><p>Pick up or I'll drop off nearby. Cash only.</p></div>
+    </div>
+    <p class="price-note" id="price-note"></p>
+  </section>
+
+  <section id="order">
+    <div class="sec-head">
+      <h2>Build Your Order</h2>
+      <p>This page doesn't send anything. It writes the text for you. Your picks are saved only in this browser. <a href="#privacy">Privacy</a></p>
+    </div>
+    <div class="stock-note" id="stock-note" hidden>
+      <b>Out of stock right now</b>
+      <span>Get on the list and I'll text you when the first jars are ready.</span>
+      <button class="btn list-btn" type="button" id="list-btn">Get on the list</button>
+    </div>
+    <ol class="steps-bar" id="steps-bar" aria-label="Order progress">
+      <li id="st-1" class="now"><span>1</span>Pick jars<i class="sr"></i></li>
+      <li id="st-2"><span>2</span>Send the text<i class="sr"></i></li>
+      <li id="st-3"><span>3</span>Get your jars<i class="sr"></i></li>
+    </ol>
+    <p class="eyebrow" style="margin-bottom:10px">Fastest: tap a 3-pack for $20</p>
+    <div class="packs" id="packs"></div>
+    <div class="order">
+      <div class="sheet" role="group" aria-label="Order quantities">
+        <div class="sheet-head"><span>Pepper</span><span>Half</span><span>Full</span></div>
+        <div id="rows"></div>
+        <div class="sheet-foot"><span>Total jars</span><b id="total">0</b></div>
+        <div class="sheet-foot"><span>Price <small style="font:500 12px/1 var(--mono);letter-spacing:.08em;color:var(--ink-soft)">$10 each · 3 for $20</small></span><b id="price">$0</b></div>
+        <p class="deal" id="deal" aria-live="polite"></p>
+        <div class="sheet-actions">
+          <button class="clear" type="button" id="clear" disabled>Clear order</button>
+          <p class="sheet-status" id="sheet-status" role="status"></p>
+        </div>
+      </div>
+      <form class="ticket" id="ticket" autocomplete="on">
+        <div class="ticket-head"><h3>Your Text</h3><span class="t-sum" id="t-sum">0 jars · $0</span></div>
+        <fieldset class="how-get">
+          <legend>How you'll get it</legend>
+          <label class="seg" for="get-pickup"><input type="radio" name="get" value="pickup" id="get-pickup" checked><span>Pick up</span></label>
+          <label class="seg" for="get-drop"><input type="radio" name="get" value="drop" id="get-drop"><span>Drop off</span></label>
+        </fieldset>
+        <label for="f-name">Your name (optional)
+          <input id="f-name" name="name" type="text" placeholder="e.g. Uncle Dave" maxlength="40" autocomplete="name" aria-describedby="f-name-note">
+          <span class="field-note" id="f-name-note">Only used in your text. Kept in this browser until you erase it.</span>
+        </label>
+        <div>
+          <p class="eyebrow" style="color:var(--on-night-soft)">Text it to</p>
+          <p class="phone" id="phone"></p>
+        </div>
+        <div class="row" id="send-row">
+          <button class="btn" type="button" id="copy" disabled>Copy my order</button>
+          <a class="btn ghost" id="sms" href="#">Open messages</a>
+        </div>
+        <p class="status" id="status" role="status"></p>
+        <div class="done" id="done" hidden>
+          <b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="3"/></svg>Order ready</b>
+          <p id="done-msg"></p>
+        </div>
+        <details class="preview">
+          <summary>Preview the text</summary>
+          <label for="f-msg" class="sr">Message to send</label>
+          <textarea id="f-msg" name="msg" readonly></textarea>
+        </details>
+      </form>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="sec-head">
+      <h2>Quick Answers</h2>
+    </div>
+    <div class="faq">
+      <details><summary>How long does it keep?</summary><p>Sealed jars keep best for about a year in a cool, dark cupboard. Once it's open, keep it in the fridge.</p></details>
+      <details><summary>Which one should I try first?</summary><p>Half Aji Limón if you're careful with heat. Half Habanero if you like a kick.</p></details>
+      <details><summary>Is the Half version mild?</summary><p>No. Half has half the hot pepper, but Half Habanero and Half Scorpion are still hot.</p></details>
+      <details><summary>What's in it?</summary><p>Sugar, bell peppers, white vinegar, hot peppers, and fruit pectin. None of the major food allergens are in the recipe, but it's made in a home kitchen that handles other foods.</p></details>
+      <details><summary>Do you ship?</summary><p>Not right now. Pickup or local drop-off only.</p></details>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="sec-head">
+      <h2>Privacy &amp; Fine Print</h2>
+      <p>The short version: this site doesn't collect anything. Your order only reaches me when you text it.</p>
+    </div>
+    <div class="fine">
+      <div>
+        <h3>Privacy</h3>
+        <ul>
+          <li><b>No accounts, ads, analytics, tracking, or cookies.</b> Nothing you type on this page is sent to me or anyone else. Fonts are served from this site, not an outside service.</li>
+          <li><b>Saved in your browser:</b> your jar picks, the optional name, and pickup or drop-off choice, so your order is still here if you come back. This stays on your device until you erase it or clear your browser data.</li>
+          <li><b>When you text me,</b> I get your phone number and whatever you write, like your name, order, and drop-off address. I use it only to fill your order and, if you asked to be on the list, to tell you when jars are ready. I don't sell or share it. Text me anytime to be taken off the list.</li>
+          <li><b>The web host</b> may keep standard server logs, like IP address, browser type, and pages visited, as nearly all websites do. I don't add any analytics on top of that.</li>
+          <li><b>Links</b> to the NCHFP recipe go to their site, which has its own privacy practices.</li>
+        </ul>
+        <div class="erase-row">
+          <button class="clear" type="button" id="erase">Erase what this site saved</button>
+          <p class="sheet-status" id="erase-status" role="status"></p>
+        </div>
+      </div>
+      <div>
+        <h3>Fine print</h3>
+        <ul>
+          <li><b>Orders are confirmed by text.</b> Nothing is reserved until I text you back. Stock, flavors, and prices can change, and the stock shown here may run behind.</li>
+          <li><b>Heat levels are guides.</b> Heat varies by batch and by pepper. The Scoville numbers are published ranges for raw peppers, not measurements of each jar.</li>
+          <li><b>Allergies:</b> the ingredients are listed in Quick Answers above. It's made in a home kitchen that handles other foods, so ask me first if you have a food allergy.</li>
+          <li><b>Local only.</b> Pickup or local drop-off in New Hampshire. Cash only. No shipping.</li>
+          <li><b>Questions or problems</b> with a jar: text <span id="fine-phone"></span>.</li>
+        </ul>
+        <p class="updated">Last updated September 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <div class="brand"><svg class="logo" viewBox="0 0 24 30" aria-hidden="true"><rect x="3" y="1.5" width="18" height="5.5" rx="1.3" fill="var(--ink)"/><path d="M6.5 2.5v3.5M9.5 2.5v3.5M12.5 2.5v3.5M15.5 2.5v3.5M18.5 2.5v3.5" stroke="var(--paper)" stroke-opacity=".35" stroke-width=".9"/><path d="M4.3 7h15.4c1.5.7 2.3 1.8 2.3 3.4V25a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V10.4c0-1.6.8-2.7 2.3-3.4z" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.4"/><path d="M3.2 12.2h17.6V25a2.9 2.9 0 0 1-2.9 2.9H6.1A2.9 2.9 0 0 1 3.2 25z" fill="var(--pepper)"/><rect x="5.2" y="14" width="1.7" height="10.5" rx=".85" fill="#fff" opacity=".6"/></svg><span class="wm">Seacoast <span>Peppers</span></span></div>
+      <p>Grown and made in Exeter, New Hampshire.<br>Made from the NCHFP Golden Pepper Jelly tested recipe.</p>
+    </div>
+    <p style="max-width:52ch">Made in a home kitchen. This product is exempt from New Hampshire licensing and inspection. Refrigerate after opening.<br><a href="#privacy">Privacy &amp; fine print</a></p>
+  </footer>
+</main>
+
+<div class="fabs" id="fabs">
+  <div class="contact-card" id="contact-card" hidden role="dialog" aria-label="Contact Matthew">
+    <p class="eyebrow" id="contact-eyebrow">Text or call Matthew</p>
+    <p class="num" id="contact-num"></p>
+    <p id="contact-desc">Ask what's in stock or set up a pickup.</p>
+    <div class="row">
+      <button class="btn" type="button" id="contact-copy">Copy number</button>
+      <a class="btn ghost" id="contact-sms" href="#">Open messages</a>
+    </div>
+    <p class="msg" id="contact-msg" role="status"></p>
+  </div>
+  <button class="fab square" type="button" id="to-top" aria-label="Back to top" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 14l7-7 7 7M12 7v14" stroke="currentColor" stroke-width="2.6" fill="none"/></svg>
+  </button>
+  <button class="fab text" type="button" id="contact-btn" aria-label="Text Matthew" aria-expanded="false" aria-controls="contact-card">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v11H9l-5 4v-4H3z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+    <span class="label">Text Matthew</span>
+  </button>
+</div>
+
+<div class="search-back" id="search" hidden>
+  <div class="search" role="dialog" aria-modal="true" aria-label="Search the site">
+    <div class="search-in">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.6"/></svg>
+      <input id="search-q" type="search" placeholder="Try citrus, mild, scorpion, pay…" aria-label="Search" autocomplete="off" maxlength="60">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="results" id="results" aria-label="Results"></ul>
+    <p class="sr" id="results-count" role="status"></p>
+    <p class="hint">Searches flavors, heat levels, the recipe, ordering, and FAQ.</p>
+  </div>
+</div>
+
+<div class="modal-back" id="modal" hidden>
+  <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-body">
+    <h3 id="modal-title">Are you sure?</h3>
+    <p id="modal-body"></p>
+    <div class="row">
+      <button class="btn ghost" type="button" id="modal-cancel">Keep it</button>
+      <button class="btn danger" type="button" id="modal-ok">Yes, clear it</button>
+    </div>
+  </div>
+</div>
+
+<div class="dock" id="dock" hidden>
+  <div class="dock-in">
+    <b id="dock-sum">0 jars · $0</b>
+    <a class="btn" href="#ticket">Finish my order</a>
+  </div>
+</div>
+
+<script>
+  /* ============ EDIT THESE ============ */
+  const CONFIG = {
+    phone: "(202) 731-5596",
+    priceNote: "$10 a jar or any 3 for $20."
+  };
+
+  /* ============ STOCK ============
+     true  = In stock
+     false = Out of stock
+     Change a word, save, and re-upload. That's it. */
+  const STOCK = {
+    limon:    { half: false, full: false },   // Aji Limón
+    greenhab: { half: false, full: false },   // Green Habanero
+    hab:      { half: false, full: false },   // Habanero
+    bmj:      { half: false, full: false },   // Bonda Ma Jacques
+    fatalii:  { half: false, full: false },   // Fatalii
+    scorpion: { half: false, full: false }    // Trinidad Scorpion
+  };
+
+  const PEPPERS = [
+    { id: "limon",   name: "Aji Limón",          origin: "Peru · C. baccatum",           jar: "#B9C23A", flavor: "Picked green for a tart citrus bite. The mildest heat in the lineup.", half: 1, full: 2 },
+    { id: "greenhab",name: "Green Habanero",     origin: "Habanero, picked green",       jar: "#6E8B2E", flavor: "Habanero picked before it ripens, for a sharper, greener taste. Made with green bell peppers.", half: 2, full: 3 },
+    { id: "hab",     name: "Habanero",           origin: "Mexico & Caribbean · C. chinense", jar: "#E8731A", flavor: "The classic hot pepper. Fruity and floral, with heat that builds.", half: 3, full: 4 },
+    { id: "bmj",     name: "Bonda Ma Jacques",   origin: "Martinique · C. chinense",     jar: "#E39A1E", flavor: "A fruity Caribbean pepper with habanero-level heat.", half: 3, full: 4 },
+    { id: "fatalii", name: "Fatalii",            origin: "Central Africa · C. chinense", jar: "#F0B51A", flavor: "Fruity and citrusy, with heat on par with a habanero.", half: 3, full: 4 },
+    { id: "scorpion",name: "Trinidad Scorpion",  origin: "Trinidad · C. chinense",       jar: "#B3261E", flavor: "One of the hottest peppers in the world. For the person who says nothing is too hot. Start with a tiny taste.", half: 5, full: 5, superhot: true }
+  ];
+  const PACKS = [
+    { name: "Mild to Wild", items: ["limon-half", "hab-full", "scorpion-half"], note: "Half Aji Limón, Full Habanero, Half Scorpion" },
+    { name: "Citrus Crew",  items: ["limon-full", "fatalii-half", "fatalii-full"], note: "Full Aji Limón, Half & Full Fatalii" },
+    { name: "Island Heat",  items: ["hab-full", "bmj-full", "greenhab-full"], note: "Full Habanero, Bonda Ma Jacques, Green Habanero" },
+    { name: "The Dare",     items: ["fatalii-full", "bmj-full", "scorpion-full"], note: "Full Fatalii, Bonda Ma Jacques, Scorpion" }
+  ];
+  /* turns STOCK into the list of out-of-stock heat levels for each pepper (no need to edit) */
+  PEPPERS.forEach(p => { const s = STOCK[p.id] || {}; p.soldOut = ["half", "full"].filter(h => s[h] !== true); });
+  const nothingInStock = PEPPERS.every(p => p.soldOut.length === 2);
+
+  const WORDS = ["", "Mild-hot", "Warm", "Hot", "Very hot", "Scorching"];
+
+  /* half-pint jar: silver two-piece lid, clear glass, jelly inside, no front label */
+  const jarSVG = (c) => `
+    <svg viewBox="0 0 58 74" aria-hidden="true">
+      <ellipse cx="29" cy="9" rx="20.5" ry="3.4" fill="#E3E6EA" stroke="#A9B0B8" stroke-width=".8"/>
+      <ellipse cx="29" cy="8.6" rx="11" ry="1.7" fill="#FFFFFF"/>
+      <rect x="8.5" y="9" width="41" height="9.5" rx="1.6" fill="#CDD2D8"/>
+      <rect x="10" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="13" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="16" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="19" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="22" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="25" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="28" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="31" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="34" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="37" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="40" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="43" y="9.5" width="1" height="8" fill="#A9B0B8"/><rect x="46" y="9.5" width="1" height="8" fill="#A9B0B8"/>
+      <rect x="8.5" y="9" width="41" height="2" fill="#EEF0F2"/>
+      <rect x="8.5" y="17" width="41" height="1.5" fill="#9AA1A9"/>
+      <path d="M10 18.5h38c1.8.9 3 2.3 3 4.4V65a6.5 6.5 0 0 1-6.5 6.5H13.5A6.5 6.5 0 0 1 7 65V22.9c0-2.1 1.2-3.5 3-4.4z" fill="#F4F6F7" stroke="#B3BAC1" stroke-width="1.1"/>
+      <path d="M8.2 26.5h41.6V64.6a5.6 5.6 0 0 1-5.6 5.6H13.8a5.6 5.6 0 0 1-5.6-5.6z" fill="${c}" fill-opacity=".92"/>
+      <rect x="8.2" y="26.5" width="41.6" height="1.6" fill="#000" opacity=".1"/>
+      <rect x="11.5" y="29.5" width="3.2" height="36" rx="1.6" fill="#fff" opacity=".5"/>
+      <rect x="43.6" y="32" width="1.6" height="26" rx=".8" fill="#fff" opacity=".35"/>
+      <rect x="11.5" y="21" width="35" height="1.4" rx=".7" fill="#fff" opacity=".7"/>
+    </svg>`;
+
+  const $spec = document.getElementById("spec-jars");
+  if ($spec) $spec.innerHTML = PEPPERS.map(p => jarSVG(p.jar)).join("");
+
+  const meter = (n) => `<span class="meter" aria-hidden="true">${[1,2,3,4,5].map(i => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>`;
+
+  document.getElementById("cards").innerHTML = PEPPERS.map((p, i) => `
+    <article class="card" id="card-${p.id}" style="--i:${i}">
+      ${p.superhot ? '<span class="superhot">Superhot</span>' : ""}
+
+      <div class="card-top">${jarSVG(p.jar)}<div><h3>${p.name}</h3><p class="origin">${p.origin}</p></div></div>
+      <p class="flavor">${p.flavor}</p>
+      <div></div>
+      <div class="heats">
+        <div class="heat-row"><span class="lvl">Half</span>${meter(p.half)}<span class="word">${WORDS[p.half]}</span></div>
+        <div class="heat-row"><span class="lvl">Full</span>${meter(p.full)}<span class="word">${p.superhot ? "Off the scale" : WORDS[p.full]}</span></div>
+      </div>
+      <div class="stock">
+        ${["half", "full"].map(h => { const inS = !p.soldOut.includes(h); return `<span class="pill ${inS ? "in" : "out"}">${h === "half" ? "Half" : "Full"} · ${inS ? "In stock" : "Out of stock"}</span>`; }).join("")}
+      </div>
+    </article>`).join("");
+
+  /* ---------- Scoville ladder (log scale, HTML so it reflows on phones) ---------- */
+  (function drawLadder() {
+    const min = Math.log10(1000), max = Math.log10(3000000);
+    const pct = v => ((Math.log10(v) - min) / (max - min) * 100).toFixed(2) + "%";
+    const rows = [
+      { n: "Jalapeño (reference)", lo: 2500, hi: 8000, c: "#8FA36A" },
+      { n: "Aji Limón", lo: 30000, hi: 50000, c: "#B9C23A" },
+      { n: "Habanero (orange & green)", lo: 100000, hi: 350000, c: "#E8731A" },
+      { n: "Fatalii", lo: 125000, hi: 400000, c: "#F0B51A" },
+      { n: "Trinidad Scorpion", lo: 1000000, hi: 2000000, c: "#E0452A", plus: true }
+    ];
+    const ticks = [1000, 10000, 100000, 1000000];
+    const tickLines = ticks.map(v => `<i class="s-tick" style="left:${pct(v)}"></i>`).join("");
+    const fmt = v => v.toLocaleString("en-US");
+    const lbl = v => v >= 1e6 ? (v / 1e6) + "M" : (v / 1e3) + "K";
+    let h = rows.map(r => `
+      <div class="s-row">
+        <span class="s-name">${r.n}</span>
+        <span class="s-track">${tickLines}<i class="s-bar" style="left:${pct(r.lo)};width:calc(${pct(r.hi)} - ${pct(r.lo)});background:${r.c}"></i></span>
+        <span class="s-range">${fmt(r.lo)}–${fmt(r.hi)}${r.plus ? "+" : ""}</span>
+      </div>`).join("");
+    h += `<div class="s-row s-axis" aria-hidden="true"><span class="s-empty"></span><span class="s-track">${
+      ticks.map((v, i) => `<span class="s-lab${i === 0 ? " first" : ""}" style="left:${pct(v)}">${lbl(v)} SHU</span>`).join("")
+    }</span><span class="s-empty"></span></div>`;
+    document.getElementById("ladder").innerHTML = h;
+  })();
+
+  /* ---------- Order card ---------- */
+  const qty = {};
+  PEPPERS.forEach(p => { qty[p.id + "-half"] = 0; qty[p.id + "-full"] = 0; });
+
+  const isOut = key => { const [id, h] = key.split("-"); return PEPPERS.find(p => p.id === id).soldOut.includes(h); };
+  const stepper = (key, label, short) => { const out = isOut(key), note = out ? " (out of stock)" : ""; return `
+    <div class="qcell"><span class="qlbl">${short}</span><div class="qty">
+      <button type="button" data-k="${key}" data-d="-1" aria-label="One fewer ${label}${note}" ${out ? "disabled" : ""}>−</button>
+      <output id="q-${key}" aria-live="polite">${out ? "Out" : 0}</output>
+      <button type="button" data-k="${key}" data-d="1" aria-label="One more ${label}${note}" ${out ? "disabled" : ""}>+</button>
+    </div></div>`; };
+
+  document.getElementById("rows").innerHTML = PEPPERS.map(p => `
+    <div class="sheet-row${p.soldOut.length === 2 ? " out" : ""}">
+      <span class="nm">${p.name}</span>
+      ${stepper(p.id + "-half", "Half " + p.name, "Half")}
+      ${stepper(p.id + "-full", "Full " + p.name, "Full")}
+    </div>`).join("");
+
+  const $ = id => document.getElementById(id);
+  const priceFor = n => Math.floor(n / 3) * 20 + (n % 3) * 10;
+
+  $("packs").innerHTML = PACKS.map((k, i) => {
+    const out = k.items.some(isOut);
+    return `<button class="pack" type="button" data-pack="${i}" ${out ? "disabled" : ""}>
+      <b>${k.name}</b><small>${out ? "Out of stock right now" : k.note}</small><em>+3 jars · $20</em></button>`;
+  }).join("");
+  const phoneEl = $("phone"), smsEl = $("sms");
+
+  function buildMessage() {
+    const lines = [];
+    PEPPERS.forEach(p => {
+      ["half", "full"].forEach(h => {
+        const n = qty[`${p.id}-${h}`];
+        if (n) lines.push(`${n} x ${h === "half" ? "Half" : "Full"} ${p.name}`);
+      });
+    });
+    const total = Object.values(qty).reduce((a, b) => a + b, 0);
+    $("total").textContent = total;
+    const price = priceFor(total);
+    $("price").textContent = "$" + price;
+    const r = total % 3;
+    $("deal").textContent = !total ? "" : r === 2 ? "Add 1 more jar. It's free with 3 for $20."
+      : r === 1 ? `Add 2 more jars for just $${priceFor(total + 2) - price} more.`
+      : `You're getting the 3-for-$20 deal on all ${total}.`;
+    const sum = `${total} jar${total === 1 ? "" : "s"} · $${price}`;
+    $("dock-sum").textContent = sum;
+    $("t-sum").textContent = sum;
+    $("copy").disabled = !total;
+    $("send-row").hidden = !total;
+    const HINT = "Add jars above, then send your order from here.";
+    if (!total && !$("status").textContent) $("status").textContent = HINT;
+    if (total && $("status").textContent === HINT) $("status").textContent = "";
+    $("clear").disabled = !total;
+    updateSteps(total);
+    dockWanted = total > 0;
+    if (typeof updateDock === "function") updateDock();
+    save();
+    const name = $("f-name").value.trim();
+    const drop = $("get-drop").checked;
+    const msg = total
+      ? `Hi Matthew! Pepper jelly order${name ? " from " + name : ""}:\n${lines.join("\n")}\nTotal: ${total} jar${total === 1 ? "" : "s"}, $${price} cash\n${drop ? "Drop-off, please. My address: " : "I'll pick up."}`
+      : "Add some jars on the order card and your text shows up here.";
+    $("f-msg").value = msg;
+    const digits = CONFIG.phone.replace(/[^\d+]/g, "");
+    smsEl.hidden = !digits || !total;
+    if (digits) smsEl.href = `sms:${digits}?&body=${encodeURIComponent(msg)}`;
+    return { msg, total };
+  }
+
+  /* ---------- progress: 1 pick → 2 send → 3 get ---------- */
+  let sent = false;
+  function updateSteps(total) {
+    const s1 = total > 0, s2 = s1 && sent;
+    $("st-1").className = s1 ? "ok" : "now";
+    $("st-2").className = s2 ? "ok" : s1 ? "now" : "";
+    $("st-3").className = s2 ? "now" : "";
+    /* state in words for screen readers, not just color */
+    ["st-1", "st-2", "st-3"].forEach(id => {
+      const c = $(id).className;
+      $(id).querySelector(".sr").textContent = c === "ok" ? ", done" : c === "now" ? ", current step" : "";
+      if (c === "now") $(id).setAttribute("aria-current", "step"); else $(id).removeAttribute("aria-current");
+    });
+    if (!s2) $("done").hidden = true;
+  }
+  function finish(text) {
+    sent = true;
+    $("done-msg").textContent = text;
+    $("done").hidden = false;
+    $("status").textContent = "";
+    updateSteps(Object.values(qty).reduce((a, b) => a + b, 0));
+  }
+  function changed() { sent = false; $("sheet-status").textContent = ""; buildMessage(); }
+
+  function setQty(k, v) {
+    if (!Object.prototype.hasOwnProperty.call(qty, k)) return;
+    v = Math.round(Number(v));
+    qty[k] = isOut(k) || !Number.isFinite(v) ? 0 : Math.max(0, Math.min(48, v));
+    $("q-" + k).textContent = isOut(k) ? "Out" : qty[k];
+  }
+  document.getElementById("rows").addEventListener("click", e => {
+    const b = e.target.closest("button[data-k]");
+    if (!b || b.disabled) return;
+    setQty(b.dataset.k, qty[b.dataset.k] + Number(b.dataset.d));
+    changed();
+  });
+  $("packs").addEventListener("click", e => {
+    const b = e.target.closest("button[data-pack]");
+    if (!b || b.disabled) return;
+    PACKS[b.dataset.pack].items.forEach(k => setQty(k, qty[k] + 1));
+    changed();
+    $("sheet-status").textContent = `Added ${PACKS[b.dataset.pack].name}.`;
+  });
+  /* while a dialog is open, the page behind it can't be reached by Tab or a screen reader */
+  function setInert(on) {
+    ["top", "main", "fabs", "dock"].forEach(id => { const el = $(id); if (el) el.inert = on; });
+  }
+
+  /* ---------- confirm modal (used before clearing an order or erasing saved info) ---------- */
+  function confirmModal({ title, body, ok }) {
+    return new Promise(resolve => {
+      const back = $("modal"), okBtn = $("modal-ok"), cancelBtn = $("modal-cancel");
+      const prev = document.activeElement;
+      $("modal-title").textContent = title;
+      $("modal-body").textContent = body;
+      okBtn.textContent = ok;
+      back.hidden = false;
+      setInert(true);
+      cancelBtn.focus();
+      const done = v => {
+        back.hidden = true;
+        setInert(false);
+        okBtn.removeEventListener("click", yes); cancelBtn.removeEventListener("click", no);
+        back.removeEventListener("click", outside); document.removeEventListener("keydown", keys, true);
+        if (prev && prev.focus) prev.focus();
+        resolve(v);
+      };
+      const yes = () => done(true), no = () => done(false);
+      const outside = e => { if (e.target === back) done(false); };
+      const keys = e => {
+        if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); done(false); }
+        if (e.key === "Tab") { e.preventDefault(); (document.activeElement === okBtn ? cancelBtn : okBtn).focus(); }
+      };
+      okBtn.addEventListener("click", yes); cancelBtn.addEventListener("click", no);
+      back.addEventListener("click", outside); document.addEventListener("keydown", keys, true);
+    });
+  }
+
+  $("clear").addEventListener("click", async () => {
+    const total = Object.values(qty).reduce((a, b) => a + b, 0);
+    if (!total) return;
+    const sure = await confirmModal({
+      title: "Clear your order?",
+      body: `This removes all ${total} jar${total === 1 ? "" : "s"} from your order card. Your name stays.`,
+      ok: "Yes, clear it"
+    });
+    if (!sure) return;
+    const before = { ...qty };
+    Object.keys(qty).forEach(k => setQty(k, 0));
+    changed();
+    const st = $("sheet-status");
+    st.innerHTML = 'Order cleared. <button class="undo" type="button" id="undo">Undo</button>';
+    $("undo").addEventListener("click", () => {
+      Object.keys(before).forEach(k => setQty(k, before[k]));
+      changed();
+      st.textContent = "Order restored.";
+      $("clear").focus();
+    });
+    $("undo").focus();
+  });
+
+  /* sticky bar: shows once jars are picked, hides while the "Your Text" box is on screen */
+  let dockWanted = false, orderVisible = false;
+  function updateDock() {
+    const show = dockWanted && !orderVisible;
+    $("dock").hidden = !show;
+    document.body.classList.toggle("dock-on", show);
+  }
+  try {
+    new IntersectionObserver(es => { orderVisible = es[0].isIntersecting; updateDock(); }, { threshold: 0.05 }).observe($("ticket"));
+  } catch (err) { /* older browsers: bar just stays visible when jars are picked */ }
+
+  /* remember an unfinished order on this device (localStorage only; never sent anywhere).
+     Nothing is saved until the visitor picks a jar, types a name, or chooses drop-off. */
+  const KEY = "seacoast-order-v1";
+  function save() {
+    try {
+      const name = $("f-name").value, drop = $("get-drop").checked;
+      const any = Object.values(qty).some(n => n > 0) || name.trim() || drop;
+      if (any) localStorage.setItem(KEY, JSON.stringify({ qty, name, drop }));
+      else localStorage.removeItem(KEY);
+    } catch (err) {}
+  }
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (saved && typeof saved === "object") {
+      const sq = saved.qty && typeof saved.qty === "object" ? saved.qty : {};
+      Object.keys(qty).forEach(k => { if (Object.prototype.hasOwnProperty.call(sq, k)) setQty(k, sq[k]); });
+      if (typeof saved.name === "string") $("f-name").value = saved.name.slice(0, 40);
+      if (saved.drop === true) $("get-drop").checked = true;
+    }
+  } catch (err) {}
+  $("f-name").addEventListener("input", changed);
+  document.querySelectorAll('input[name="get"]').forEach(r => r.addEventListener("change", changed));
+  $("ticket").addEventListener("submit", e => e.preventDefault());
+
+  $("copy").addEventListener("click", () => {
+    const { msg, total } = buildMessage();
+    if (!total) return;
+    const ta = $("f-msg");
+    const fallback = () => { ta.closest("details").open = true; ta.focus(); ta.select(); $("status").textContent = "Selected. Press Ctrl+C (or ⌘C) to copy, then paste it in a text to " + CONFIG.phone + "."; };
+    try {
+      navigator.clipboard.writeText(msg)
+        .then(() => finish(`Copied. Paste it in a text to ${CONFIG.phone}, and I'll text back to confirm your jars.`))
+        .catch(fallback);
+    } catch (err) { fallback(); }
+  });
+  smsEl.addEventListener("click", () => finish("Hit send in your messages app, and I'll text back to confirm your jars."));
+
+  /* on phones, texting straight from the page is the fastest path, so it becomes the main button */
+  try {
+    if (matchMedia("(pointer: coarse)").matches && CONFIG.phone) {
+      smsEl.className = "btn"; smsEl.textContent = "Text my order";
+      $("copy").className = "btn ghost"; $("copy").textContent = "Copy instead";
+      $("send-row").prepend(smsEl);
+    }
+  } catch (err) {}
+
+  /* ---------- reduced motion helper ---------- */
+  const calm = () => { try { return matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) { return false; } };
+  const goTo = el => { el.scrollIntoView({ behavior: calm() ? "auto" : "smooth", block: "start" }); };
+
+  /* ---------- mobile menu ---------- */
+  const nav = $("nav"), menuBtn = $("menu-btn");
+  function setMenu(open) {
+    nav.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", open);
+    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    $("menu-ic").setAttribute("d", open ? "M5 5l14 14M19 5L5 19" : "M3 6h18M3 12h18M3 18h18");
+  }
+  menuBtn.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+  nav.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("click", e => { if (nav.classList.contains("open") && !e.target.closest(".bar-tools")) setMenu(false); });
+
+  /* ---------- scroll progress + back to top ---------- */
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      $("progress").style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+      $("to-top").hidden = scrollY < 700;
+      ticking = false;
+    });
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+  onScroll();
+  $("to-top").addEventListener("click", () => { scrollTo({ top: 0, behavior: calm() ? "auto" : "smooth" }); $("main").focus({ preventScroll: true }); });
+
+  /* ---------- floating contact ---------- */
+  const card = $("contact-card"), cBtn = $("contact-btn");
+  $("contact-num").textContent = CONFIG.phone || "Number coming soon";
+  const smsDigits = CONFIG.phone.replace(/[^\d+]/g, "");
+  if (smsDigits) $("contact-sms").href = `sms:${smsDigits}`; else $("contact-sms").hidden = true;
+  function setContact(open) { card.hidden = !open; cBtn.setAttribute("aria-expanded", open); if (!open) $("contact-msg").textContent = ""; }
+  cBtn.addEventListener("click", () => {
+    if (card.hidden) {
+      $("contact-eyebrow").textContent = "Text or call Matthew";
+      $("contact-desc").textContent = "Ask what's in stock or set up a pickup.";
+      if (smsDigits) $("contact-sms").href = `sms:${smsDigits}`;
+    }
+    setContact(card.hidden);
+  });
+  document.addEventListener("click", e => { if (!card.hidden && !e.target.closest("#fabs")) setContact(false); });
+  $("contact-copy").addEventListener("click", () => {
+    const say = m => { $("contact-msg").textContent = m; };
+    const sel = () => { const r = document.createRange(); r.selectNodeContents($("contact-num")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); say("Selected. Press Ctrl+C (or ⌘C) to copy."); };
+    try { navigator.clipboard.writeText(CONFIG.phone).then(() => say("Copied.")).catch(sel); } catch (e) { sel(); }
+  });
+
+  /* ---------- site search ---------- */
+  const faqs = [...document.querySelectorAll("#faq details")];
+  faqs.forEach((d, i) => d.id = "faq-" + (i + 1));
+  const INDEX = [
+    ...PEPPERS.map(p => ({ type: "Flavor", title: p.name, sub: `${p.soldOut.length === 2 ? "Out of stock · " : p.soldOut.length ? "Partly in stock · " : "In stock · "}Half: ${WORDS[p.half]} · Full: ${p.superhot ? "Off the scale" : WORDS[p.full]}`,
+      text: [p.name, p.origin, p.flavor, WORDS[p.half], WORDS[p.full], p.superhot ? "superhot hottest" : "", "jelly jar half full heat", p.soldOut.length === 2 ? "out of stock" : "in stock available"].join(" "), el: "card-" + p.id })),
+    ...PACKS.map(k => ({ type: "3-pack", title: k.name, sub: k.note + " · $20", text: [k.name, k.note, "pack gift three bundle deal"].join(" "), el: "packs" })),
+    ...faqs.map(d => ({ type: "FAQ", title: d.querySelector("summary").textContent, sub: d.querySelector("p").textContent, text: d.textContent, el: d.id, open: true })),
+    ...[...document.querySelectorAll("#main section")].map(s => ({ type: "Section", title: s.querySelector("h2").textContent,
+      sub: (s.querySelector(".sec-head p") || {}).textContent || "", text: s.textContent, el: s.id }))
+  ];
+  const norm = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  INDEX.forEach(x => x.hay = norm(x.title + " " + x.text));
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  let hits = [], active = 0;
+
+  function runSearch() {
+    const q = norm($("search-q").value.trim());
+    const terms = q.split(/\s+/).filter(Boolean);
+    hits = terms.length ? INDEX.filter(x => terms.every(t => x.hay.includes(t)))
+      .sort((a, b) => (norm(b.title).includes(terms[0]) - norm(a.title).includes(terms[0]))).slice(0, 8) : INDEX.filter(x => x.type === "Flavor");
+    active = 0;
+    $("results").innerHTML = hits.length ? hits.map((x, i) => `<li><button type="button" data-i="${i}" class="${i === 0 ? "on" : ""}">
+        <span class="type">${esc(x.type)}</span><b>${esc(x.title)}</b><small>${esc(x.sub.slice(0, 110))}${x.sub.length > 110 ? "…" : ""}</small></button></li>`).join("")
+      : `<li class="empty">Nothing matches "${esc($("search-q").value.trim())}". Try a pepper name, "mild", "citrus", or "pay".</li>`;
+    $("results-count").textContent = terms.length ? (hits.length ? `${hits.length} result${hits.length === 1 ? "" : "s"}` : "No results") : "";
+  }
+  function highlight(i) {
+    const btns = [...$("results").querySelectorAll("button")];
+    if (!btns.length) return;
+    active = (i + btns.length) % btns.length;
+    btns.forEach((b, j) => b.classList.toggle("on", j === active));
+    btns[active].scrollIntoView({ block: "nearest" });
+  }
+  let lastFocus = null;
+  function openSearch() { lastFocus = document.activeElement; setMenu(false); setContact(false); $("search").hidden = false; setInert(true); $("search-q").value = ""; runSearch(); $("search-q").focus(); }
+  function closeSearch(restore = true) { $("search").hidden = true; setInert(false); if (restore && lastFocus && lastFocus.focus) lastFocus.focus(); }
+  /* keep Tab inside the search box while it's open */
+  $("search").addEventListener("keydown", e => {
+    if (e.key !== "Tab") return;
+    const f = [$("search-q"), ...$("results").querySelectorAll("button")];
+    const i = f.indexOf(document.activeElement);
+    if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+  });
+  function pick(i) {
+    const x = hits[i]; if (!x) return;
+    closeSearch(false);
+    const el = $(x.el);
+    if (x.open) el.open = true;
+    goTo(el);
+    el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+    const f = el.querySelector("summary, button, a") || el;
+    setTimeout(() => f.focus({ preventScroll: true }), calm() ? 0 : 450);
+  }
+  $("search-open").addEventListener("click", openSearch);
+  $("search-q").addEventListener("input", runSearch);
+  $("results").addEventListener("click", e => { const b = e.target.closest("button[data-i]"); if (b) pick(+b.dataset.i); });
+  $("search").addEventListener("click", e => { if (e.target === $("search")) closeSearch(); });
+  $("search-q").addEventListener("keydown", e => {
+    if (e.key === "ArrowDown") { e.preventDefault(); highlight(active + 1); }
+    if (e.key === "ArrowUp") { e.preventDefault(); highlight(active - 1); }
+    if (e.key === "Enter") { e.preventDefault(); pick(active); }
+  });
+
+  /* ---------- global keys ---------- */
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      if (!$("search").hidden) closeSearch();
+      else if (!card.hidden) { setContact(false); cBtn.focus(); }
+      else if (nav.classList.contains("open")) { setMenu(false); menuBtn.focus(); }
+    }
+  });
+  /* (The old "/" shortcut was removed: single-key shortcuts can be set off by accident with speech input. WCAG 2.1.4) */
+
+  /* ---------- erase everything this site saved in the browser ---------- */
+  $("erase").addEventListener("click", async () => {
+    const sure = await confirmModal({
+      title: "Erase saved info?",
+      body: "This clears your jar picks, name, and pickup choice from this browser. Nothing is stored anywhere else.",
+      ok: "Yes, erase it"
+    });
+    if (!sure) return;
+    try { localStorage.removeItem(KEY); } catch (err) {}
+    Object.keys(qty).forEach(k => setQty(k, 0));
+    $("f-name").value = "";
+    $("get-pickup").checked = true;
+    changed();
+    $("erase-status").textContent = "Erased. This browser no longer has anything saved from this site.";
+  });
+
+  $("stock-note").hidden = !nothingInStock;
+
+  /* ---------- "Get on the list" mode: turns on by itself while every STOCK entry is false ---------- */
+  function openList(e) {
+    e.preventDefault(); e.stopPropagation();
+    $("contact-eyebrow").textContent = "Get on the list";
+    $("contact-desc").textContent = "Text me and I'll let you know when the first jars are ready.";
+    if (smsDigits) $("contact-sms").href = `sms:${smsDigits}?&body=${encodeURIComponent("Hi Matthew, put me on the pepper jelly list!")}`;
+    setContact(true);
+    $("contact-copy").focus();
+  }
+  if (nothingInStock) {
+    const cta = $("cta-main");
+    cta.textContent = "Get on the list";
+    cta.addEventListener("click", openList);
+    $("list-btn").addEventListener("click", openList);
+  }
+  if (CONFIG.phone) { phoneEl.textContent = CONFIG.phone; }
+  else { phoneEl.textContent = "Number coming soon"; phoneEl.classList.add("pending"); }
+  $("price-note").textContent = CONFIG.priceNote;
+  $("fine-phone").textContent = CONFIG.phone || "me";
+  buildMessage();
+</script>
+
+</body>
+</html>
